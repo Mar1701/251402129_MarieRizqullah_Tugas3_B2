@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tugas Javascript</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      transition: 0.3s;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f7f4fc;
+      color: #333;
+    }
+
+    .dark-mode {
+      background-color: #1c1b22;
+      color: #f8f8f8;
+    }
+
+ 
+    nav {
+      background: linear-gradient(90deg, #a485f7, #8666e9);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 40px;
+      box-shadow: 0 4px 15px rgba(132, 102, 214, 0.3);
+    }
+
+    .dark-mode nav {
+      background: linear-gradient(90deg, #3e2f75, #2e2155);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    nav h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    nav button {
+      background: white;
+      color: #4e2bb1;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+    }
+
+    .dark-mode nav button {
+      background: #3a2f63;
+      color: #fff;
+    }
+
+
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      background: white;
+      padding: 35px 45px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(170, 150, 255, 0.3);
+      text-align: center;
+    }
+
+    .dark-mode .container {
+      background: #2b2640;
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+    }
+
+    .description {
+      color: #7b6f9f;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .dark-mode .description {
+      color: #b9a8ff;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    button.action {
+      background: linear-gradient(135deg, #a485f7, #8666e9);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+      box-shadow: 0 4px 10px rgba(132, 102, 214, 0.3);
+    }
+
+    button.action:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #b79aff, #9873ff);
+    }
+
+    #cardContainer {
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    .card {
+      background: #ede8fb;
+      border-left: 6px solid #8c6df2;
+      border-radius: 12px;
+      padding: 15px 20px;
+      margin-top: 12px;
+      position: relative;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode .card {
+      background: #3b3263;
+      border-left-color: #bfa7ff;
+      color: #f4f2ff;
+    }
+
+    .hapus {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: #d63a6c;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-size: 12px;
+      box-shadow: 0 2px 6px rgba(214, 58, 108, 0.4);
+    }
+
+    .hapus:hover {
+      background: #b12d57;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .dark-mode .form-container {
+      background: #342b4e;
+      color: white;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .form-container button {
+      background: linear-gradient(135deg, #a485f7, #8666e9);
+      border: none;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .form-container button:hover {
+      background: linear-gradient(135deg, #b79aff, #9873ff);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #8b80aa;
+      font-size: 13px;
+    }
+
+    .dark-mode footer {
+      color: #bda9ff;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav>
+    <h2></h2>
+    <button id="modeButton">🌙 Mode Malam</button>
+  </nav>
+
+  
+  <div class="container">
+    
+    <div class="button-group">
+      <button class="action" id="addCardBtn">➕ Tambah Card</button>
+      <button class="action" id="popupBtn">📝 Isi Form</button>
+      <button class="action" id="komBtn">🔍 Pembaca KOM</button>
+    </div>
+
+    <div id="cardContainer"></div>
+  </div>
+
+ 
+  <div class="popup" id="popupForm">
+    <div class="form-container">
+      <h3>Isi Form Data</h3>
+      <input type="text" id="nama" placeholder="Masukkan Nama" />
+      <input type="text" id="nim" placeholder="Masukkan NIM" />
+      <br />
+      <button id="closePopup">Tutup</button>
+    </div>
+  </div>
+
+  <script>
+    
+    const modeButton = document.getElementById("modeButton");
+    modeButton.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      modeButton.textContent = document.body.classList.contains("dark-mode")
+        ? "☀️ Mode Pagi"
+        : "🌙 Mode Malam";
+    });
+
+   
+    const addCardBtn = document.getElementById("addCardBtn");
+    const cardContainer = document.getElementById("cardContainer");
+    let cardCount = 0;
+
+    function updateCardNumbers() {
+      const cards = cardContainer.querySelectorAll(".card");
+      if (cards.length === 0) {
+        cardCount = 0;
+      } else {
+        cards.forEach((card, index) => {
+          card.querySelector("strong").textContent = `Card ${index + 1}`;
+        });
+      }
+    }
+
+    addCardBtn.addEventListener("click", () => {
+      cardCount++;
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <p><strong>Card ${cardCount}</strong></p>
+        <button class="hapus">✖</button>
+      `;
+      cardContainer.appendChild(card);
+
+      card.querySelector(".hapus").addEventListener("click", () => {
+        card.remove();
+        updateCardNumbers();
+      });
+    });
+
+   
+    const popupBtn = document.getElementById("popupBtn");
+    const popupForm = document.getElementById("popupForm");
+    const closePopup = document.getElementById("closePopup");
+
+    popupBtn.addEventListener("click", () => {
+      popupForm.style.display = "flex";
+    });
+
+    closePopup.addEventListener("click", () => {
+      popupForm.style.display = "none";
+    });
+
+   // Tombol Pembaca KOM
+const komBtn = document.getElementById("komBtn");
+
+komBtn.addEventListener("click", () => {
+  const nim = prompt("Masukkan NIM Mahasiswa Prodi Teknologi Informasi:");
+
+  if (!nim) {
+    // Jika pengguna membatalkan atau tidak mengisi NIM
+    alert("⚠️ Popup dibatalkan atau NIM kosong!");
+  } else if (nim.toUpperCase().startsWith("2")) {
+    // Jika NIM diawali dengan 'TI'
+    alert(`✅ NIM ${nim.toUpperCase()} berada di KOM B TI`);
+  } else {
+    // Jika NIM tidak sesuai format
+    alert(`❌ NIM ${nim.toUpperCase()} tidak terdaftar di KOM TI`);
+  }
+});
+
+
+    
+  </script>
+</body>
+</html>
